@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Pomodoro v2</title>
+    <title>Zen Focus Timer</title>
+    
     <style>
         :root {
             --bg-color: #f0f4f8;
             --card-bg: #ffffff;
             --text-color: #2d3748;
-            --accent-color: #63b3ed; /* Blu relax */
-            --warning-color: #f6ad55; /* Arancio focus */
+            --accent-color: #63b3ed;
+            --warning-color: #f6ad55;
         }
 
         body {
@@ -22,7 +23,6 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            transition: background 1s ease;
         }
 
         .container {
@@ -34,56 +34,75 @@
             width: 350px;
         }
 
+        /* Interfaccia in Inglese */
+        h1 { font-size: 1.5rem; margin-bottom: 20px; text-transform: uppercase; }
+
         #timer {
             font-size: 5rem;
             font-weight: bold;
             margin: 10px 0;
             color: var(--accent-color);
-            transition: color 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        /* Animazione per il countdown finale */
+        .pulse { animation: pulse-animation 1s infinite; }
+        @keyframes pulse-animation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
         
         button {
             background: var(--accent-color);
-            color: white; border: none; padding: 10px 20px;
-            border-radius: 10px; cursor: pointer; font-weight: bold;
+            color: white; border: none; padding: 12px 25px;
+            border-radius: 12px; cursor: pointer; font-weight: bold;
+            transition: opacity 0.2s;
         }
+
+        button:hover { opacity: 0.8; }
 
         .sound-selector {
             margin-top: 20px;
             border-top: 1px solid #eee;
             padding-top: 15px;
+            text-align: left;
         }
 
         select {
+            margin-top: 5px;
             padding: 8px;
             border-radius: 5px;
-            border: 1px solid #ddd;
             width: 100%;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1 id="status-title">Focus Time</h1>
+    <h1 id="status-title">Focus Session</h1>
     <div id="timer">25:00</div>
     
     <div class="controls">
-        <button id="start">Avvia</button>
+        <button id="start">Start</button>
         <button id="reset">Reset</button>
     </div>
 
     <div class="sound-selector">
-        <label for="bg-music">Sottofondo Zen:</label>
+        <label for="bg-music">Ambience Sound:</label>
         <select id="bg-music">
-            <option value="">Nessuno (Silenzio)</option>
-            <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Focus Melodico</option>
-            </select>
+            <option value="">None (Silence)</option>
+            <option value="https://www.soundjay.com/nature/rain-07.mp3">Soft Rain</option>
+            <option value="https://www.soundjay.com/nature/ocean-waves-1.mp3">Ocean Waves</option>
+        </select>
     </div>
     
-    <p id="message" style="font-size: 0.9rem; opacity: 0.6; margin-top: 15px;">Meno di 5 minuti? Il colore cambierà!</p>
+    <p id="message" style="font-size: 0.8rem; opacity: 0.5; margin-top: 20px;">
+        Stay zen. Stay focused.
+    </p>
 </div>
 
 <audio id="audio-player" loop></audio>
@@ -103,23 +122,30 @@
         const secs = timeLeft % 60;
         timerDisplay.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
         
-        // Cambio colore se mancano meno di 5 minuti (300 secondi)
+        // Cambia colore sotto i 5 minuti
         if (timeLeft <= 300 && timeLeft > 0) {
             timerDisplay.style.color = "var(--warning-color)";
         } else {
             timerDisplay.style.color = "var(--accent-color)";
+        }
+
+        // Effetto pulsante negli ultimi 10 secondi
+        if (timeLeft <= 10 && timeLeft > 0) {
+            timerDisplay.classList.add('pulse');
+        } else {
+            timerDisplay.classList.remove('pulse');
         }
     }
 
     startBtn.addEventListener('click', () => {
         if (isRunning) {
             clearInterval(timerId);
-            startBtn.textContent = 'Riprendi';
+            startBtn.textContent = 'Resume';
             audioPlayer.pause();
             isRunning = false;
         } else {
             isRunning = true;
-            startBtn.textContent = 'Pausa';
+            startBtn.textContent = 'Pause';
             if (musicSelect.value) audioPlayer.play();
             
             timerId = setInterval(() => {
@@ -127,7 +153,7 @@
                 updateDisplay();
                 if (timeLeft <= 0) {
                     clearInterval(timerId);
-                    alert("Ottimo lavoro! Ora riposati.");
+                    alert("Time's up! Take a break.");
                     resetTimer();
                 }
             }, 1000);
@@ -140,15 +166,18 @@
         clearInterval(timerId);
         timeLeft = 25 * 60;
         isRunning = false;
-        startBtn.textContent = 'Avvia';
+        startBtn.textContent = 'Start';
         audioPlayer.pause();
         updateDisplay();
     }
 
     musicSelect.addEventListener('change', () => {
         audioPlayer.src = musicSelect.value;
-        if (isRunning && musicSelect.value) audioPlayer.play();
-        else audioPlayer.pause();
+        if (isRunning && musicSelect.value) {
+            audioPlayer.play();
+        } else {
+            audioPlayer.pause();
+        }
     });
 
     updateDisplay();
