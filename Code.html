@@ -3,155 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Pomodoro Timer</title>
-    
+    <title>Zen Pomodoro v2</title>
     <style>
         :root {
             --bg-color: #f0f4f8;
             --card-bg: #ffffff;
             --text-color: #2d3748;
-            --accent-color: #63b3ed;
-            --break-color: #48bb78;
+            --accent-color: #63b3ed; /* Blu relax */
+            --warning-color: #f6ad55; /* Arancio focus */
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            transition: background 1s ease;
         }
 
         .container {
             background: var(--card-bg);
-            padding: 3rem;
+            padding: 2.5rem;
             border-radius: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             text-align: center;
-            width: 320px;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            width: 350px;
         }
 
         #timer {
             font-size: 5rem;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 10px 0;
             color: var(--accent-color);
             transition: color 0.5s ease;
         }
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
+        .controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        
         button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 12px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            background: var(--accent-color);
+            color: white; border: none; padding: 10px 20px;
+            border-radius: 10px; cursor: pointer; font-weight: bold;
         }
 
-        button:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
+        .sound-selector {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
         }
 
-        button:active {
-            transform: translateY(0);
-        }
-
-        #reset {
-            background-color: #cbd5e0;
-            color: #4a5568;
-        }
-
-        .status-msg {
-            margin-top: 25px;
-            font-style: italic;
-            opacity: 0.7;
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 id="title">Focus</h1>
-        <div id="timer">25:00</div>
-        
-        <div class="buttons">
-            <button id="start">Avvia</button>
-            <button id="reset">Reset</button>
-        </div>
-
-        <p class="status-msg" id="message">Fai un respiro profondo.</p>
+<div class="container">
+    <h1 id="status-title">Focus Time</h1>
+    <div id="timer">25:00</div>
+    
+    <div class="controls">
+        <button id="start">Avvia</button>
+        <button id="reset">Reset</button>
     </div>
 
-    <script>
-        let timeLeft = 25 * 60; // 25 minuti in secondi
-        let timerId = null;
-        let isRunning = false;
+    <div class="sound-selector">
+        <label for="bg-music">Sottofondo Zen:</label>
+        <select id="bg-music">
+            <option value="">Nessuno (Silenzio)</option>
+            <option value="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">Focus Melodico</option>
+            </select>
+    </div>
+    
+    <p id="message" style="font-size: 0.9rem; opacity: 0.6; margin-top: 15px;">Meno di 5 minuti? Il colore cambierà!</p>
+</div>
 
-        const timerDisplay = document.getElementById('timer');
-        const startBtn = document.getElementById('start');
-        const resetBtn = document.getElementById('reset');
-        const titleLabel = document.getElementById('title');
-        const messageLabel = document.getElementById('message');
+<audio id="audio-player" loop></audio>
 
-        function updateDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+<script>
+    let timeLeft = 25 * 60;
+    let timerId = null;
+    let isRunning = false;
+
+    const timerDisplay = document.getElementById('timer');
+    const startBtn = document.getElementById('start');
+    const audioPlayer = document.getElementById('audio-player');
+    const musicSelect = document.getElementById('bg-music');
+
+    function updateDisplay() {
+        const mins = Math.floor(timeLeft / 60);
+        const secs = timeLeft % 60;
+        timerDisplay.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        
+        // Cambio colore se mancano meno di 5 minuti (300 secondi)
+        if (timeLeft <= 300 && timeLeft > 0) {
+            timerDisplay.style.color = "var(--warning-color)";
+        } else {
+            timerDisplay.style.color = "var(--accent-color)";
         }
+    }
 
-        function startTimer() {
-            if (isRunning) {
-                clearInterval(timerId);
-                startBtn.textContent = 'Riprendi';
-                isRunning = false;
-            } else {
-                isRunning = true;
-                startBtn.textContent = 'Pausa';
-                timerId = setInterval(() => {
-                    timeLeft--;
-                    updateDisplay();
-
-                    if (timeLeft <= 0) {
-                        clearInterval(timerId);
-                        alert("Tempo scaduto! È ora di una pausa.");
-                        resetTimer();
-                    }
-                }, 1000);
-            }
-        }
-
-        function resetTimer() {
+    startBtn.addEventListener('click', () => {
+        if (isRunning) {
             clearInterval(timerId);
-            timeLeft = 25 * 60;
+            startBtn.textContent = 'Riprendi';
+            audioPlayer.pause();
             isRunning = false;
-            startBtn.textContent = 'Avvia';
-            updateDisplay();
+        } else {
+            isRunning = true;
+            startBtn.textContent = 'Pausa';
+            if (musicSelect.value) audioPlayer.play();
+            
+            timerId = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerId);
+                    alert("Ottimo lavoro! Ora riposati.");
+                    resetTimer();
+                }
+            }, 1000);
         }
+    });
 
-        startBtn.addEventListener('click', startTimer);
-        resetBtn.addEventListener('click', resetTimer);
+    document.getElementById('reset').addEventListener('click', resetTimer);
 
-        // Inizializza il display
+    function resetTimer() {
+        clearInterval(timerId);
+        timeLeft = 25 * 60;
+        isRunning = false;
+        startBtn.textContent = 'Avvia';
+        audioPlayer.pause();
         updateDisplay();
-    </script>
+    }
+
+    musicSelect.addEventListener('change', () => {
+        audioPlayer.src = musicSelect.value;
+        if (isRunning && musicSelect.value) audioPlayer.play();
+        else audioPlayer.pause();
+    });
+
+    updateDisplay();
+</script>
 </body>
 </html>
