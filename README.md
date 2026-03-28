@@ -1,2 +1,3 @@
 # ZenProductivityTimer
-EN A clean, minimal web application designed to maximize focus. Built with HTML5, CSS3, and JavaScript, it implements the famous Pomodoro Technique to help users manage work sessions and breaks efficiently. IT Un'applicazione web minimale e pulita progettata per massimizzare la concentrazione. Realizzata con HTML5, CSS3 e JavaScript, implementa la celebre Tecnica Pomodoro per aiutare gli utenti a gestire sessioni di lavoro e pause in modo efficiente.
+EN 
+A clean, minimal web application designed to maximize focus. Built with HTML5, CSS3, and JavaScript, it implements the famous Pomodoro Technique to help users manage work sessions and breaks efficiently. IT Un'applicazione web minimale e pulita progettata per massimizzare la concentrazione. Realizzata con HTML5, CSS3 e JavaScript, implementa la celebre Tecnica Pomodoro per aiutare gli utenti a gestire sessioni di lavoro e pause in modo efficiente.
