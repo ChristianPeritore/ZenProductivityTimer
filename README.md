@@ -1,71 +1,59 @@
-# 🚀 Zen Productivity Suite: CLI Edition
+# ⏳ Zen Focus Timer: Professional Edition
 
-Welcome to the **Zen Productivity Suite**. This repository hosts a collection of high-performance terminal tools designed for students and professionals. It includes a **Scientific Calculator** and a **Focus Timer**, both available in **C++** and **Python**.
-
----
-
-# 🍴 Key Features
-
-* **Scientific Calculator** — Advanced trigonometry (DEG/RAD), base conversions (HEX/BIN/DEC), and n-th root calculations.
-* **Focus Timer** — A professional Pomodoro-style timer with live updates, pause/resume logic, and visual alerts.
-* **Cross-Language Support** — Optimized source code for both **C++17** and **Python 3.x**.
-* **Input Validation** — Robust error handling to prevent crashes from division by zero or invalid time ranges.
-* **Clean UX** — Minimalist terminal interface using carriage return (`\r`) logic for a distraction-free experience.
+A high-performance productivity tool designed to manage focus sessions directly from your terminal. This repository features two distinct implementations: a **compiled C++ version** for speed and a **Python script** for cross-platform flexibility.
 
 ---
 
-# 📦 Getting Started
+# 🍴 Features
+
+* **Custom Duration** — Set any focus goal between 1 and 1440 minutes.
+* **Live UI** — Real-time updates on a single terminal line using carriage return (`\r`) logic.
+* **Smart Formatting** — Automatically switches between `HH:MM:SS` and `MM:SS` formats.
+* **Visual Alerts** — Dynamic "Final Minute" warning and "Session Complete" notifications.
+* **Robust Logic** — Built-in input validation to handle non-numeric or out-of-range values.
+
+---
+
+# 🚀 Getting Started
 
 ### Requirements
-* **C++:** A compiler like `g++` (MinGW for Windows, Clang for Mac, or GCC for Linux).
-* **Python:** Python 3.6 or higher installed.
+* **C++ Version:** A compiler supporting C++11 or later (`g++`, `clang++`, or `MSVC`).
+* **Python Version:** Python 3.6 or higher.
 
 ---
 
-## 🛠️ Tool 1: Scientific Calculator
+## 🛠️ Compilation & Usage (C++)
 
-### 🔹 C++ Version (Compiled)
-**Compile:**
+Ideal for a permanent, standalone executable on your system.
+
+### 1. Compile
+Open your Command Prompt (CMD) or Terminal and run:
 ```bash
-g++ -std=c++17 -o calculator main_calc.cpp
-Run:
+g++ -std=c++17 -o FocusTimer timer.cpp
+2. Run
+FocusTimer
+In-App Controls:
 
-./calculator
-Commands: sin, cos, log, base (for HEX/BIN), mode (DEG/RAD toggle), exit.
+P — Pause / Resume the countdown.
 
-⏳ Tool 2: Focus Timer
-🔹 C++ Version (Compiled)
-Compile:
+R — Reset the timer to the starting value.
 
-g++ -std=c++17 -o timer timer.cpp
-Run:
+Q — Quit and close the application.
 
-./timer
-Controls: P (Pause), R (Reset), Q (Quit).
+🐍 Script Execution (Python)
+Ideal for rapid use without the need for compilation.
 
-🔹 Python Version (Script)
-Run directly:
-
-Bash
+1. Run Directly
 python timer.py
-Controls: Ctrl + C to stop the session.
+In-App Controls:
 
-⌨️ General Interaction Guide
-All tools in this suite follow a Command-First logic:
+Ctrl + C — Safely stop the timer and exit.
 
-Launch the desired executable or script.
+⌨️ User Guide
+Launch the program using one of the methods above.
 
-Input the command (e.g., sin or the number of minutes).
+Input the number of minutes you wish to focus (e.g., 25, 60, 90).
 
-Execute by pressing Enter.
+Press Enter to start the countdown.
 
-Follow the on-screen status updates.
-
-⚠️ System Notes & Pro Tips
-Environment Variables: For C++, ensure your compiler's bin folder is added to your System Path.
-
-Case Sensitivity: Commands are case-insensitive (e.g., SIN works the same as sin).
-
-Precision: Mathematical results are displayed with 6 decimal places for scientific accuracy.
-
-Zen Mode: Both tools clear the terminal screen upon launch to minimize distractions.
+Stay Focused while the timer updates live in your terminal.
