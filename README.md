@@ -1,5 +1,4 @@
-Gemini ha detto
-⏳ Zen Focus Timer: Professional Edition
+# ⏳ Zen Focus Timer: Professional Edition
 <p align="center">
 <img src="https://img.shields.io/badge/C%2B%2B-17-blue?style=for-the-badge&logo=c%2B%2B" alt="C++17" />
 <img src="https://img.shields.io/badge/Python-3.8+-yellow?style=for-the-badge&logo=python" alt="Python 3" />
