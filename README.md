@@ -64,16 +64,6 @@ Stay Focused while the timer updates live in your terminal.
 <img width="600" alt="Zen Focus Timer Preview" src="https://github.com/user-attachments/assets/693c8526-f41b-42eb-8793-7199bf85107d" />
 </p>
 
-📈 Developer Stats
-<p align="center">
-<img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=ChristianPeritore&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" />
-<img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=ChristianPeritore&layout=compact&theme=tokyonight" />
-</p>
-
-📂 Project Structure
-├── timer.cpp    # C++ Implementation Source
-├── timer.py     # Python Implementation Source
-└── README.md    # Documentation
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
