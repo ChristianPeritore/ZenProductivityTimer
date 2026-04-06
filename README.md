@@ -83,7 +83,3 @@
 ├── timer.cpp    # Sorgente implementazione C++
 ├── timer.py     # Sorgente implementazione Python
 └── README.md    # Documentazione del progetto
-
-<p align="center">
-<b>Developed with ❤️ by <a href="https://www.google.com/search?q=https://github.com/ChristianPeritore">Christian Peritore</a></b>
-</p>
