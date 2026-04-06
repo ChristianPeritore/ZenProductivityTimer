@@ -1,69 +1,89 @@
 # ⏳ Zen Focus Timer: Professional Edition
+
 <p align="center">
-<img src="https://img.shields.io/badge/C%2B%2B-17-blue?style=for-the-badge&logo=c%2B%2B" alt="C++17" />
-<img src="https://img.shields.io/badge/Python-3.8+-yellow?style=for-the-badge&logo=python" alt="Python 3" />
-<img src="https://img.shields.io/badge/Platform-Cross--Platform-lightgrey?style=for-the-badge" alt="Platform" />
-<img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/badge/C%2B%2B-17-blue?style=for-the-badge&logo=c%2B%2B" alt="C++17" />
+  <img src="https://img.shields.io/badge/Python-3.8+-yellow?style=for-the-badge&logo=python" alt="Python 3" />
+  <img src="https://img.shields.io/badge/Platform-Cross--Platform-lightgrey?style=for-the-badge" alt="Platform" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
-A high-performance productivity tool designed to manage focus sessions directly from your terminal. This repository features two distinct implementations: a compiled C++ version for maximum performance and a Python script for cross-platform flexibility.
+---
 
-🌟 Features
-🎯 Custom Duration — Set any focus goal between 1 and 1440 minutes.
+### 📖 Descrizione
+**Zen Focus Timer** è uno strumento di produttività ad alte prestazioni progettato per gestire sessioni di concentrazione direttamente dal terminale. Il repository include due implementazioni distinte per adattarsi a ogni esigenza:
+* **Versione C++:** Compilata per la massima velocità e un basso consumo di risorse.
+* **Script Python:** Ideale per una flessibilità immediata e cross-platform.
 
-⏱️ Live UI — Real-time updates on a single terminal line using carriage return (\r) logic.
+---
 
-🧠 Smart Formatting — Automatically switches between HH:MM:SS and MM:SS formats.
+## 🌟 Features
 
-⚠️ Visual Alerts — Dynamic "Final Minute" warnings and "Session Complete" notifications.
+* **🎯 Custom Duration** — Imposta obiettivi di focus personalizzati (da 1 a 1440 minuti).
+* **⏱️ Live UI** — Aggiornamenti in tempo reale su riga singola tramite logica di *carriage return* (`\r`).
+* **🧠 Smart Formatting** — Switch automatico tra i formati `HH:MM:SS` e `MM:SS`.
+* **⚠️ Visual Alerts** — Avvisi dinamici per l'"Ultimo Minuto" e notifiche di "Sessione Completata".
+* **🛡️ Robust Logic** — Validazione degli input per gestire valori non numerici o fuori intervallo.
 
-🛡️ Robust Logic — Built-in input validation to handle non-numeric or out-of-range values.
+---
 
-🚀 Getting Started
-Prerequisites
-C++ Version: A compiler supporting C++11 or later (g++, clang++, or MSVC).
+## 🚀 Getting Started
 
-Python Version: Python 3.6 or higher.
+### Prerequisites
+* **C++:** Un compilatore compatibile con C++11 o superiore (`g++`, `clang++`, o `MSVC`).
+* **Python:** Versione 3.6 o superiore.
 
-🛠️ Installation & Usage
-Option A: C++ (Compiled Executable)
-Best for a permanent, standalone tool on your system.
+---
 
-Compile:
-Open your terminal and run:
+## 🛠️ Installation & Usage
 
-Bash
-g++ -std=c++17 -O3 -o FocusTimer timer.cpp
-Run:
+### 🔹 Option A: C++ (Compiled Executable)
+*Ideale come strumento standalone permanente sul sistema.*
 
-Bash
-./FocusTimer
-Controls: P (Pause/Resume) | R (Reset) | Q (Quit)
+1.  **Compilazione:**
+    Apri il terminale e digita:
+    ```bash
+    g++ -std=c++17 -O3 -o FocusTimer timer.cpp
+    ```
+2.  **Esecuzione:**
+    ```bash
+    ./FocusTimer
+    ```
+> **Controls:** `P` (Pause/Resume) | `R` (Reset) | `Q` (Quit)
 
-Option B: Python (Script)
-Best for rapid use without compilation.
+### 🔹 Option B: Python (Script)
+*Ideale per un utilizzo rapido senza necessità di compilazione.*
 
-Run Directly:
+1.  **Esecuzione:**
+    ```bash
+    python timer.py
+    ```
+> **Controls:** `Ctrl + C` (Safe Exit)
 
-Bash
-python timer.py
-Controls: Ctrl + C (Safe Exit)
+---
 
-⌨️ User Guide
-Launch the program using one of the methods above.
+## ⌨️ User Guide
 
-Input the number of minutes you wish to focus (e.g., 25, 60, 90).
+1.  **Avvia** il programma scegliendo uno dei metodi sopra indicati.
+2.  **Inserisci** il numero di minuti desiderati (es. `25`, `60`, `90`).
+3.  **Premi Invio** per far partire il countdown.
+4.  **Stay Focused!** Monitora il tempo rimanente live nel terminale.
 
-Press Enter to start the countdown.
+---
 
-Stay Focused while the timer updates live in your terminal.
+## 📸 Preview
 
-📸 Preview
 <p align="center">
-<img width="600" alt="Zen Focus Timer Preview" src="https://github.com/user-attachments/assets/693c8526-f41b-42eb-8793-7199bf85107d" />
+  <img width="600" alt="Zen Focus Timer Preview" src="https://github.com/user-attachments/assets/693c8526-f41b-42eb-8793-7199bf85107d" />
 </p>
 
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
 
-Developed by Christian Peritore
+## 📂 Project Structure
+```text
+├── timer.cpp    # Sorgente implementazione C++
+├── timer.py     # Sorgente implementazione Python
+└── README.md    # Documentazione del progetto
+
+<p align="center">
+<b>Developed with ❤️ by <a href="https://www.google.com/search?q=https://github.com/ChristianPeritore">Christian Peritore</a></b>
+</p>
